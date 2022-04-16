@@ -1,0 +1,1 @@
+c:\users\kali\documents\visual studio 2015\Projects\projectile\projectile\bin\Debug\projectile.exe.config
