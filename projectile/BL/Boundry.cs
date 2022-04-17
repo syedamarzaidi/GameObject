@@ -22,10 +22,10 @@ namespace projectile.BL
             this.BottomLeft = BottomLeft;
             this.BottomRight = BottomRight;
         }
-        public Point TopLeft = new Point();
-        public Point TopRight = new Point();
-        public Point BottomLeft = new Point();
-        public Point BottomRight = new Point();
+        public Point TopLeft;
+        public Point TopRight;
+        public Point BottomLeft;
+        public Point BottomRight;
         public static char[,] boundry = new char[200,200];
     }
 }

@@ -9,28 +9,32 @@ namespace projectile.UI
 {
     class BoundryUI
     {
-        public static void drawBoundry(char objectShape,Boundry objectBoundry)
+       public static void drawBoundry(char objectShape,Boundry b)
         {
-            drawLine(objectBoundry.TopLeft.x, objectBoundry.TopRight.y,"HORIZONTAL",objectShape);
-            drawLine(objectBoundry.TopLeft.x, objectBoundry.BottomLeft.x,"VERTICAL", objectShape);
+            drawLine(b.TopLeft, b.TopRight, "HORIZONTAL", objectShape);
+            drawLine(b.BottomLeft, b.BottomRight, "HORIZONTAL", objectShape);
+            drawLine(b.TopLeft, b.BottomLeft, "VERTICAL", objectShape);
+            drawLine(b.TopRight, b.BottomRight, "VERTICAL", objectShape);
         }
-        public static void drawLine(int start,int end,string direction,char objectShape)
+        public static void drawLine(Point startingPoint,Point endingPoint,string criteria,char objectShape)
         {
-            if(direction == "HORIZONTAL")
+            if(criteria == "HORIZONTAL")
             {
-                for(int y = start; y <= end; y++)
+                int x = startingPoint.x;
+                for(int y = startingPoint.y; y < endingPoint.y; y++)
                 {
-                    Boundry.boundry[start,y]= objectShape;
-                    Console.SetCursorPosition(y, start);
+                    Boundry.boundry[x, y] = objectShape;
+                    Console.SetCursorPosition(y, x);
                     Console.Write(objectShape);
                 }
             }
-            else if(direction == "VERTICAL")
+            else if(criteria == "VERTICAL")
             {
-                for(int x = start; x <= end; x++)
+                int y = startingPoint.y;
+                for(int x = startingPoint.x; x < endingPoint.y; x++)
                 {
-                    Boundry.boundry[x, start] = objectShape;
-                    Console.SetCursorPosition(start, x);
+                    Boundry.boundry[x, y] = objectShape;
+                    Console.SetCursorPosition(y, x);
                     Console.Write(objectShape);
                 }
             }

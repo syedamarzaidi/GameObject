@@ -30,10 +30,43 @@ namespace projectile.BL
             this.Direction = "LeftToRight";
         }
         public char[,] Shape = new char[20, 20];
-        Point StartingPoint;
-        Boundry Premises;
-        string Direction;
+        public Point StartingPoint;
+        public Boundry Premises;
+        public string Direction;
+        public void setStartingPoint(int x,int y)
+        {
+            this.StartingPoint.setXY(x, y);
+        }
+        public static bool isMoveRightPossible(GameObject g)
+        {
+            for (int x = 0; x < g.Shape.GetLength(0); x++)//GetLength(0) is used to find the first dimension size
+            {
+                for (int y = g.Shape.GetLength(1); y >= 0; y--)
+                {
+                    if(Boundry.boundry[g.StartingPoint.x + x, g.StartingPoint.y + y + 1] == '-')
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        public static bool isMoveLeftPossible(GameObject g)
+        {
+            for (int x = 0; x < g.Shape.GetLength(0); x++)//GetLength(0) is used to find the first dimension size
+            {
+                for (int y = 0; y < g.Shape.GetLength(1); y++)
+                {
+                    if (Boundry.boundry[g.StartingPoint.x + x, g.StartingPoint.y + y - 1] == '-')
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
     }
+    
    /* public static void Move(string Direction)
     {
         if(Direction == "LeftToRight")
