@@ -1,1 +1,6 @@
 c:\users\kali\documents\visual studio 2015\Projects\projectile\projectile\bin\Debug\projectile.exe.config
+c:\users\kali\documents\visual studio 2015\Projects\projectile\projectile\obj\Debug\projectile.csprojResolveAssemblyReference.cache
+c:\users\kali\documents\visual studio 2015\Projects\projectile\projectile\bin\Debug\projectile.exe
+c:\users\kali\documents\visual studio 2015\Projects\projectile\projectile\bin\Debug\projectile.pdb
+c:\users\kali\documents\visual studio 2015\Projects\projectile\projectile\obj\Debug\projectile.exe
+c:\users\kali\documents\visual studio 2015\Projects\projectile\projectile\obj\Debug\projectile.pdb

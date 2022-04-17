@@ -18,8 +18,8 @@ namespace projectile.BL
             this.x = x;
             this.y = y;
         }
-        int x;
-        int y;
+        public int x;
+        public int y;
         public void setX(int x)
         {
             this.x = x;

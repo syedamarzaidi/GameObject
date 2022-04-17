@@ -43,8 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\Boundry.cs" />
+    <Compile Include="BL\GameObject.cs" />
+    <Compile Include="BL\Point.cs" />
+    <Compile Include="DL\GameObjectDL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\BoundryUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

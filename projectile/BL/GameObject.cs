@@ -22,9 +22,23 @@ namespace projectile.BL
             this.Premises = Premises;
             this.Direction = Direction;
         }
+        public GameObject(char[,] Shape , Point StartingPoint)
+        {
+            this.Shape = Shape;
+            this.StartingPoint = StartingPoint;
+            this.Premises = new Boundry();
+            this.Direction = "LeftToRight";
+        }
         public char[,] Shape = new char[20, 20];
         Point StartingPoint;
         Boundry Premises;
         string Direction;
     }
+   /* public static void Move(string Direction)
+    {
+        if(Direction == "LeftToRight")
+        {
+            MoveLeft('@',1);
+        }
+    }*/
 }
