@@ -31,7 +31,7 @@ namespace projectile.UI
             else if(criteria == "VERTICAL")
             {
                 int y = startingPoint.y;
-                for(int x = startingPoint.x; x < endingPoint.y; x++)
+                for(int x = startingPoint.x; x < endingPoint.x; x++)
                 {
                     Boundry.boundry[x, y] = objectShape;
                     Console.SetCursorPosition(y, x);
