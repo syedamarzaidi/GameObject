@@ -16,16 +16,17 @@ namespace projectile.DL
                 if (GameObject.isMoveRightPossible(g, obstacle))
                 {
                     GameObjectUI.EraseObject(g);
-                    for (int x = 0; x < g.Shape.GetLength(0); x++)//GetLength(0) is used to find the first dimension size
+                    for (int x = 0; x < g.getShape().GetLength(0); x++)//GetLength(0) is used to find the first dimension size
                     {
-                        for (int y = 0; y < g.Shape.GetLength(1); y++)
+                        for (int y = 0; y < g.getShape().GetLength(1); y++)
                         {
-                            Boundry.boundry[g.StartingPoint.x + x, g.StartingPoint.y + y + step] = g.Shape[x, y];
-                            Console.SetCursorPosition(g.StartingPoint.y + y + step, g.StartingPoint.x + x);
-                            Console.Write(g.Shape[x, y]);
+                            Point p = new Point(g.getStartingPoint().getX() + x, g.getStartingPoint().getY() + y + step);
+                            Boundry.setBoundry(p , g.getShape()[x, y]);
+                            Console.SetCursorPosition(g.getStartingPoint().getY() + y + step, g.getStartingPoint().getX() + x);
+                            Console.Write(g.getShape()[x, y]);
                         }
                     }
-                    g.setStartingPoint(g.StartingPoint.x, g.StartingPoint.y + step);//+1
+                    g.setStartingPoint(g.getStartingPoint().getX(), g.getStartingPoint().getY() + step);//+1
                 }
             }
         }
@@ -36,16 +37,17 @@ namespace projectile.DL
                 if (GameObject.isMoveLeftPossible(g, obstacle))
                 {
                     GameObjectUI.EraseObject(g);
-                    for (int x = 0; x < g.Shape.GetLength(0); x++)//GetLength(0) is used to find the first dimension size
+                    for (int x = 0; x < g.getShape().GetLength(0); x++)//GetLength(0) is used to find the first dimension size
                     {
-                        for (int y = 0; y < g.Shape.GetLength(1); y++)
+                        for (int y = 0; y < g.getShape().GetLength(1); y++)
                         {
-                            Boundry.boundry[g.StartingPoint.x + x, g.StartingPoint.y + y - step] = g.Shape[x, y];
-                            Console.SetCursorPosition(g.StartingPoint.y + y - step, g.StartingPoint.x + x);
-                            Console.Write(g.Shape[x, y]);
+                            Point p = new Point(g.getStartingPoint().getX() + x, g.getStartingPoint().getY() + y - step);
+                            Boundry.setBoundry(p , g.getShape()[x, y]);
+                            Console.SetCursorPosition(g.getStartingPoint().getY() + y - step, g.getStartingPoint().getX() + x);
+                            Console.Write(g.getShape()[x, y]);
                         }
                     }
-                    g.setStartingPoint(g.StartingPoint.x, g.StartingPoint.y - step);
+                    g.setStartingPoint(g.getStartingPoint().getX(), g.getStartingPoint().getY() - step);
                 }
             }
         }
@@ -54,16 +56,17 @@ namespace projectile.DL
             if (GameObject.isMoveUpPossible(g, obstacle))
             {
                 GameObjectUI.EraseObject(g);
-                for (int x = 0; x < g.Shape.GetLength(0); x++)//GetLength(0) is used to find the first dimension size
+                for (int x = 0; x < g.getShape().GetLength(0); x++)//GetLength(0) is used to find the first dimension size
                 {
-                    for (int y = 0; y < g.Shape.GetLength(1); y++)
+                    for (int y = 0; y < g.getShape().GetLength(1); y++)
                     {
-                        Boundry.boundry[g.StartingPoint.x + x - step, g.StartingPoint.y + y] = g.Shape[x, y];
-                        Console.SetCursorPosition(g.StartingPoint.y + y, g.StartingPoint.x + x - step);
-                        Console.Write(g.Shape[x, y]);
+                        Point p = new Point(g.getStartingPoint().getX() + x - step, g.getStartingPoint().getY() + y);
+                        Boundry.setBoundry(p , g.getShape()[x, y]);
+                        Console.SetCursorPosition(g.getStartingPoint().getY() + y, g.getStartingPoint().getX() + x - step);
+                        Console.Write(g.getShape()[x, y]);
                     }
                 }
-                g.setStartingPoint(g.StartingPoint.x - step, g.StartingPoint.y);
+                g.setStartingPoint(g.getStartingPoint().getX() - step, g.getStartingPoint().getY());
             }
         }
         public static void MoveDown(GameObject g, int step, char obstacle)
@@ -71,28 +74,29 @@ namespace projectile.DL
             if (GameObject.isMoveDownPossible(g, obstacle))
             {
                 GameObjectUI.EraseObject(g);
-                for (int x = g.Shape.GetLength(0) - 1; x >= 0; x--)
+                for (int x = g.getShape().GetLength(0) - 1; x >= 0; x--)
                 {
-                    for (int y = 0; y < g.Shape.GetLength(1); y++)
+                    for (int y = 0; y < g.getShape().GetLength(1); y++)
                     {
-                        Boundry.boundry[g.StartingPoint.x + x + step, g.StartingPoint.y + y] = g.Shape[x, y];
-                        Console.SetCursorPosition(g.StartingPoint.y + y, g.StartingPoint.x + x + step);
-                        Console.Write(g.Shape[x, y]);
+                        Point p = new Point(g.getStartingPoint().getX() + x + step, g.getStartingPoint().getY() + y);
+                        Boundry.setBoundry(p , g.getShape()[x, y]);
+                        Console.SetCursorPosition(g.getStartingPoint().getY() + y, g.getStartingPoint().getX() + x + step);
+                        Console.Write(g.getShape()[x, y]);
                     }
                 }
-                g.setStartingPoint(g.StartingPoint.x + step, g.StartingPoint.y);
+                g.setStartingPoint(g.getStartingPoint().getX() + step, g.getStartingPoint().getY());
             }
         }
         public static void patrol(GameObject g, int step, char obstacle)
         {
-            if (g.patrolingFlag == "LEFT")
+            if (g.getPatrolingFlag() == "LEFT")
             {
                 MoveRightToLeft(g, step, obstacle);
                 if (!GameObject.isMoveLeftPossible(g, obstacle)) {
                     g.setPatrolingFlag("RIGHT");
                 }
             }
-            else if (g.patrolingFlag == "RIGHT")
+            else if (g.getPatrolingFlag() == "RIGHT")
             {
                 MoveLeftToRight(g, step, obstacle);
                 if (!GameObject.isMoveRightPossible(g, obstacle))
@@ -103,19 +107,19 @@ namespace projectile.DL
         }
         public static void moveProjectile(GameObject g, int step, char obstacle)
         {
-            if (g.projectileCount < 5)
+            if (g.getProjectileCount() < 5)
             {
                 moveDiagnol(g, step, obstacle,"TopRight");
             }
-            else if (g.projectileCount < 7)
+            else if (g.getProjectileCount() < 7)
             {
                 MoveLeftToRight(g, step, obstacle);
             }
-            else if(g.projectileCount < 11)
+            else if(g.getProjectileCount() < 11)
             {
                 moveDiagnol(g, step, obstacle, "BottomRight");
             }
-            int count = g.projectileCount + 1;
+            int count = g.getProjectileCount() + 1;
             g.setProjectileCount(count);
         }
         public static void moveDiagnol(GameObject g, int step, char obstacle, string Direction)

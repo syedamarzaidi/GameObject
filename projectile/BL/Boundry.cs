@@ -22,10 +22,42 @@ namespace projectile.BL
             this.BottomLeft = BottomLeft;
             this.BottomRight = BottomRight;
         }
-        public Point TopLeft;
-        public Point TopRight;
-        public Point BottomLeft;
-        public Point BottomRight;
-        public static char[,] boundry = new char[200,200];
+        private Point TopLeft;
+        private Point TopRight;
+        private Point BottomLeft;
+        private Point BottomRight;
+       private static char[,] boundry = new char[200,200];
+        public static char getBoundryCharacter(Point p)
+        {
+            return boundry[p.getX(), p.getY()];
+        }
+        public static char[,] getBoudry()
+        {
+            return boundry;
+        }
+        public static void setBoundry(Point location, char shape)
+        {
+           boundry[location.getX(), location.getY()] = shape;
+        }
+        public Point getTopLeft()
+        {
+            return TopLeft;
+        }
+        public Point getTopRight()
+        {
+            return TopRight;
+        }
+        public Point getBottomLeft()
+        {
+            return BottomLeft;
+        }
+        public Point getBottomRight()
+        {
+            return BottomRight;
+        }
+        private char[,] getBoundry()
+        {
+            return boundry;
+        }
     }
 }

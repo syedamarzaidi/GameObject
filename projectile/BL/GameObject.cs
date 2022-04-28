@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using projectile.DL;
-
+using projectile.UI;
 namespace projectile.BL
 {
     class GameObject
@@ -30,12 +30,36 @@ namespace projectile.BL
             this.Premises = new Boundry();
             this.Direction = "LeftToRight";
         }
-        public char[,] Shape = new char[20, 20];
-        public Point StartingPoint;
-        public Boundry Premises;
-        public string Direction;
-        public string patrolingFlag = "LEFT";
-        public int projectileCount = 0;//This attribute is used to take decisions that how many times object is moved at certain direction and it is now time to change this count 
+        private char[,] Shape = new char[20, 20];
+        private Point StartingPoint;
+        private Boundry Premises;
+        private string Direction;
+        private string patrolingFlag = "LEFT";
+        private int projectileCount = 0;//This attribute is used to take decisions that how many times object is moved at certain direction and it is now time to change this count 
+        public char[,] getShape()
+        {
+            return Shape;
+        }
+        public Point getStartingPoint()
+        {
+            return StartingPoint;
+        }
+        public Boundry getPremises()
+        {
+            return Premises;
+        }
+        public string getDirection()
+        {
+            return Direction;
+        }
+        public string getPatrolingFlag()
+        {
+            return patrolingFlag;
+        }
+        public int getProjectileCount()
+        {
+            return projectileCount;
+        }
         public void setProjectileCount(int projectileCount)
         {
             this.projectileCount = projectileCount;
@@ -77,7 +101,8 @@ namespace projectile.BL
             {
                 for (int y = g.Shape.GetLength(1); y >= 0; y--)
                 {
-                    if(Boundry.boundry[g.StartingPoint.x + x, g.StartingPoint.y + y + 1] == obstacle)
+                    Point p = new Point(g.StartingPoint.getX() + x, g.StartingPoint.getY() + y + 1);
+                    if(Boundry.getBoundryCharacter(p) == obstacle)
                     {
                         return false;
                     }
@@ -90,8 +115,9 @@ namespace projectile.BL
             for (int x = 0; x < g.Shape.GetLength(0); x++)//GetLength(0) is used to find the first dimension size
             {
                 for (int y = 0; y < g.Shape.GetLength(1); y++)
-                {     
-                        if (Boundry.boundry[g.StartingPoint.x + x, g.StartingPoint.y-1] == obstacle)
+                {
+                    Point p = new Point(g.StartingPoint.getX() + x, g.StartingPoint.getY() - 1);
+                        if (Boundry.getBoundryCharacter(p) == obstacle)
                         {
                             return false;
                         }
@@ -101,7 +127,8 @@ namespace projectile.BL
         }
         public static bool isMoveUpPossible(GameObject g,char obstacle)
         {
-            if(Boundry.boundry[g.StartingPoint.x -1,g.StartingPoint.y] == obstacle)
+            Point p = new Point(g.StartingPoint.getX() - 1, g.StartingPoint.getY());
+            if(Boundry.getBoundryCharacter(p) == obstacle)
             {
                 return false;
             }
@@ -109,12 +136,14 @@ namespace projectile.BL
         }
         public static bool isMoveDownPossible(GameObject g,char obstacle)
         {
-            if (Boundry.boundry[g.StartingPoint.x + g.Shape.GetLength(0), g.StartingPoint.y] == obstacle)
+            Point p = new Point(g.StartingPoint.getX() + g.Shape.GetLength(0), g.StartingPoint.getY());
+            if (Boundry.getBoundryCharacter(p) == obstacle)
             {
                 return false;
             }
             return true;
         }
+
     }
     
    /* public static void Move(string Direction)
